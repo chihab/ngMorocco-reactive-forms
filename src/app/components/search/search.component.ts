@@ -4,7 +4,7 @@ import { of, Observable } from 'rxjs';
 import { tap, delay, switchMap, filter, distinctUntilChanged, debounceTime } from 'rxjs/operators';
 
 const isRequired = (control: FormControl) => {
-  return control.value ? null : { isRequired: 'Username is required' }
+  return control.value ? null : { isRequired: 'FIeld is required' }
 };
 
 @Component({
