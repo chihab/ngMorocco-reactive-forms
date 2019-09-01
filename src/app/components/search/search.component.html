@@ -1,0 +1,36 @@
+<h2> Template driven form </h2>
+
+<!-- <input [(ngModel)]="userName" required /> -->
+<!-- Syntaxic sugar of: -->
+<input [ngModel]="userName" (ngModelChange)="userName = $event" #input="ngModel" required />
+
+<h3> Valid: {{input.valid}} </h3>
+<h3> Binding: {{userName}} </h3>
+<button [disabled]="input.invalid">Submit</button>
+
+<hr />
+
+<h2> Model driven form </h2>
+
+<form [formGroup]="formGroup">
+
+  <input formControlName="userName" />
+  <!--<input formControlName="email" /> -->
+
+  <button [disabled]="formGroup.invalid">Submit</button>
+  <h3> Valid: {{formGroup.get('userName').valid}} </h3>
+  <div *ngIf="formGroup.get('userName').hasError('isAvailable')">
+    Username is required
+  </div>
+  <div *ngIf="formGroup.get('userName').pending">
+    Validating username....
+  </div>
+
+  <h3 *ngIf="loading"> Searching... </h3>
+  <ul>
+    <li *ngFor="let user of users$ | async">
+      {{user}}
+    </li>
+  </ul>
+
+</form>
